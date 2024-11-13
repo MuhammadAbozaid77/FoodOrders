@@ -1,0 +1,83 @@
+@import "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* font-family: "Rubik Mono One", monospace; */
+/* font-family: "Istok Web", sans-serif; */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Rubik", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  /* font-family: "Rubik", sans-serif; */
+  font-family: "RocknRoll One", sans-serif !important;
+}
+
+footer h1::after {
+  content: "";
+  height: 4px;
+  background-color: red;
+  width: 50px;
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+}
+
+.spinner {
+  width: 11.2px;
+  height: 11.2px;
+  animation: spinner-z355kx 1s infinite linear;
+  border-radius: 11.2px;
+  box-shadow: 28px 0px 0 0 red, 17.4px 21.8px 0 0 red, -6.2px 27.2px 0 0 red,
+    -25.2px 12px 0 0 red, -25.2px -12px 0 0 red, -6.2px -27.2px 0 0 red,
+    17.4px -21.8px 0 0 red;
+}
+
+@keyframes spinner-z355kx {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom {
+  height: 100%;
+  background-color: black;
+}
+
+/* Here we want to style classes that are coming from leaflet. So we want CSS Modules to give us the ACTUAL classnames, not to add some random ID to them, because then they won't match the classnames defined inside the map. The solution is to define these classes as GLOBAL */
+
+.leaflet-popup .leaflet-popup-content {
+  font-size: 20px;
+  margin: 15px;
+  padding: 10px;
+  background-color: #267fca;
+  color: white;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 200px;
+}
+
+.leaflet-popup .leaflet-popup-content span:first-child {
+  font-size: 20px;
+  color: rgb(255, 196, 0);
+}
+
+.leaflet-popup .leaflet-popup-tip {
+  background-color: white;
+}
+
+
+
