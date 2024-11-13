@@ -9,10 +9,12 @@ import {
 import { motion } from "framer-motion";
 import SpinnerLoading from "../../components/ui/SpinnerLoading";
 import NoDataToDisplay from "../../components/ui/NoDataToDisplay";
+import Table from "../../components/ui/Table";
 
 export default function Orders() {
   const isLoading = false;
-  const { orderList } = useContext(AppContextSlice);
+  // const { orderList } = useContext(AppContextSlice);
+  const orderList = [{}];
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5; // You can change this value to set the number of items per page
 
@@ -33,20 +35,20 @@ export default function Orders() {
   const handlePrevious = () => {
     setCurrentPage((prev) => Math.max(prev - 1, 1));
   };
-  if (isLoading) return <SpinnerLoading />;
-  if (orderList?.length === 0)
-    return <NoDataToDisplay text={"No Orders Submitted"} />;
+  // if (isLoading) return <SpinnerLoading />;
+  // if (orderList?.length === 0)
+  //   return <NoDataToDisplay text={"No Orders Submitted"} />;
 
   return (
     <>
-      <div className="flex justify-center items-center mt-[30px]">
+      {/* <div className="flex justify-center items-center mt-[30px]">
         <span className="text-red-500 text-[50px]">
           <MdDeliveryDining />
         </span>
         <span className="text-[30px] mx-5 text-gray-600 font-bold">
           Submitted Orders
         </span>
-      </div>
+      </div> */}
       {orderList.length === 0 ? (
         <>
           <motion.div
@@ -72,7 +74,38 @@ export default function Orders() {
               ))}
             </div>
           </div>
-          <div className="flex justify-center mt-5">
+
+          <Table>
+            <Table.THeader>
+              <Table.THead>dddddd</Table.THead>
+              <Table.THead>dddddd</Table.THead>
+              <Table.THead>dddddd</Table.THead>
+              <Table.THead>dddddd</Table.THead>
+              <Table.THead>dddddd</Table.THead>
+              <Table.THead>dddddd</Table.THead>
+            </Table.THeader>
+            <Table.TBody>
+              <Table.TRow>
+                <Table.TCell>ffffddddddddddddddd</Table.TCell>
+                <Table.TCell>ffffddddddddddddddd</Table.TCell>
+                <Table.TCell>ffffddddddddddddddd</Table.TCell>
+                <Table.TCell>ffffddddddddddddddd</Table.TCell>
+                <Table.TCell>ffffddddddddddddddd</Table.TCell>
+                <Table.TCell>ffffddddddddddddddd</Table.TCell>
+              </Table.TRow>
+              <Table.TRow>
+                <Table.TCell>ffffddddddddddddddd</Table.TCell>
+                <Table.TCell>ffffddddddddddddddd</Table.TCell>
+                <Table.TCell>ffffddddddddddddddd</Table.TCell>
+                <Table.TCell>ffffddddddddddddddd</Table.TCell>
+                <Table.TCell>ffffddddddddddddddd</Table.TCell>
+                <Table.TCell>ffffddddddddddddddd</Table.TCell>
+              </Table.TRow>
+            </Table.TBody>
+          </Table>
+        </>
+      )}
+      {/* <div className="flex justify-center mt-5">
             <button
               onClick={handlePrevious}
               disabled={currentPage === 1}
@@ -97,9 +130,7 @@ export default function Orders() {
             >
               <MdOutlineArrowForwardIos size={25} />
             </button>
-          </div>
-        </>
-      )}
+          </div> */}
     </>
   );
 }

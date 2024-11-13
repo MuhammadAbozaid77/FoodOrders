@@ -57,7 +57,7 @@ export default function Cart() {
         )}
       </div>
       <div className="p-5">
-        <button className="border p-2 shadow bg-gray-300"> Oprn Modal </button>
+        <button className="border p-2 shadow bg-gray-300"> Open Modal </button>
       </div>
     </>
   );
