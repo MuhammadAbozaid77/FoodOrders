@@ -5,8 +5,13 @@ import { toast } from "react-toastify";
 export let AppContextSlice = createContext(0);
 
 export default function AppContextProvider({ children }) {
+  const localStorageInWishlist = localStorage.getItem("order-wishlist");
+
   // --------------------------------User-------------------------------------------
   const [userData, setuserData] = useState("");
+  const wishlistData = localStorageInWishlist
+    ? JSON.parse(localStorageInWishlist)
+    : [];
   // -------------------------------------------------------------------------------
   const [showSideBar, setShowSideBar] = useState(false);
   const [showSearchPage, setShowSearchPage] = useState(false);
@@ -19,10 +24,7 @@ export default function AppContextProvider({ children }) {
   const [orderList, setOrderList] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("pizza");
   const [cartArray, setCartArray] = useState([]);
-  const [wishListArray, setWishListArray] = useState(() => {
-    const newData = localStorage.getItem("order-wishlist");
-    return JSON.parse(newData);
-  });
+  const [wishListArray, setWishListArray] = useState(wishlistData);
   const [total, setTotal] = useState(0);
 
   // ---------------------------------- Notifications  -----------------------------------
@@ -121,12 +123,14 @@ export default function AppContextProvider({ children }) {
   // ----------------------------------  WishList -----------------------------------
 
   const handelWishList = (args) => {
-    const updatedWishListArray = wishListArray?.find(
-      (index) => index.id === args.id
+    const itemFoundedInWishlist = wishListArray?.find(
+      (index) => index?.id === args?.id
     );
 
-    if (updatedWishListArray) {
-      const newFiltered = wishListArray.filter((item) => item.id !== args.id);
+    if (itemFoundedInWishlist) {
+      const newFiltered = wishListArray?.filter(
+        (item) => item?.id !== args?.id
+      );
       setWishListArray(newFiltered);
       notifyRemoveWhishlist();
     } else {
@@ -160,15 +164,15 @@ export default function AppContextProvider({ children }) {
     localStorage.setItem("order-wishlist", JSON.stringify(wishListArray));
   }, [wishListArray]);
   // ------------------------------------------------------------------------
-  // Merged Poducts and Wishlist
   useEffect(() => {
-    const mergedData = productsData?.map((item) => {
-      const wishlistItem = wishListArray?.find((w) => w.id === item.id);
+    const mergedData = productsData.map((item) => {
+      const wishlistItem = wishListArray.find((w) => w?.id === item?.id);
       return wishlistItem
         ? { ...item, isWishListChecked: true }
         : { ...item, isWishListChecked: false };
     });
     setProductsData(mergedData);
+    // Only run this effect when wishListArray changes
   }, [wishListArray]);
 
   return (
@@ -204,6 +208,7 @@ export default function AppContextProvider({ children }) {
           searchData,
           userData,
           setuserData,
+          setProductsData,
         }}
       >
         {children}

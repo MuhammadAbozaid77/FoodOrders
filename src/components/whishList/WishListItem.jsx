@@ -1,7 +1,11 @@
 import { motion } from "framer-motion";
+import { useContext } from "react";
 import { FiHeart } from "react-icons/fi";
+import { AppContextSlice } from "../../context/AppContext";
 //
-export default function WishListItem({ item, handelWishList }) {
+export default function WishListItem({ item }) {
+  const { handelWishList } = useContext(AppContextSlice);
+
   return (
     <>
       <motion.div

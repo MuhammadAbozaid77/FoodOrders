@@ -5,8 +5,8 @@ import { useContext } from "react";
 import { AppContextSlice } from "../../context/AppContext";
 import { motion } from "framer-motion";
 
-export default function Product({ productsData }) {
-  const { handelWishList } = useContext(AppContextSlice);
+export default function Product() {
+  const { productsData } = useContext(AppContextSlice);
 
   return (
     <>
@@ -25,11 +25,7 @@ export default function Product({ productsData }) {
       </motion.div>
       <div className="flex gap-3 flex-wrap lg:justify-start justify-center mt-[30px]">
         {productsData?.map((item, index) => (
-          <ProductItem
-            item={item}
-            key={index}
-            handelWishList={handelWishList}
-          />
+          <ProductItem item={item} key={index} />
         ))}
       </div>
     </>

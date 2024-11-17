@@ -30,10 +30,7 @@ export default function WhishList({ setShowWishList }) {
         </div>
 
         <div className="flex justify-center items-center">
-          <WishListProducts
-            data={wishListArray}
-            handelWishList={handelWishList}
-          />
+          <WishListProducts />
         </div>
       </div>
     </>
