@@ -34,17 +34,6 @@ export default function CartDetails() {
         </div>
 
         <CartModal />
-
-        {/* <button
-          onClick={() => handelShowCheckoutModal()}
-          className=" p-3 w-[100%] bg-red-500 hover:bg-red-700 duration-150 text-white my-5 font-semibold  
-          flex justify-center items-center rounded-[10px] cursor-pointer"
-        >
-          <span className="text-[20px]"> Check Orders</span>
-          <span className="mx-2">
-            <MdKeyboardDoubleArrowRight size={30} />
-          </span>
-        </button> */}
       </div>
     </>
   );
